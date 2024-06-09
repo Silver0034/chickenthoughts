@@ -101,30 +101,4 @@ export async function GET(context: APIContext) {
 		}),
 		{ status: 200 }
 	)
-
-	// // In yyyy-mm-dd format
-	// const dateString = formatDate(date)
-
-	// const thought = thoughts[dateString]
-
-	// response.date = dateString
-
-	// if (!thought) {
-	// 	return new Response(
-	// 		JSON.stringify({
-	// 			message: 'No thought found for this date.',
-	// 			...response
-	// 		}),
-	// 		{ status: 404 }
-	// 	)
-	// }
-
-	// return new Response(
-	// 	JSON.stringify({
-	// 		attribution:
-	// 			'The Chicken. ChickenThoughts.com. All rights reserved.',
-	// 		date: date.toDateString(),
-	// 		message: thought
-	// 	})
-	// )
 }

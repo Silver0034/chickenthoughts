@@ -30,6 +30,8 @@
 
 <script is:inline>
 	async function setThought() {
+		let data, response
+
 		// Get today in yyyy-mm-dd format
 		let today = new Date()
 
@@ -43,13 +45,13 @@
 			useGrouping: false
 		})
 
-		console.log(`${year}.${month}.${day}`)
-
 		// Get today's thought from /api/thought/mm-dd-yyyy
-		const response = await fetch(`/api/thoughts/${month}.${day}.${year}`)
-		console.log(response)
-		const data = await response.json()
-		console.log(data)
+		try {
+			response = await fetch(`/api/thoughts/${month}.${day}.${year}`)
+			data = await response.json()
+		} catch (error) {
+			console.log(error)
+		}
 
 		// Select the .thought element
 		const thought = document.querySelector('#thought .thought')
