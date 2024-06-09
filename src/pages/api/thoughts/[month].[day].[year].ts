@@ -15,14 +15,36 @@ function formatDate(date: Date) {
 function getThoughts(year: number) {
 	const thoughts: { [key: string]: string } = {}
 
-	// Add each holiday to thoughts
-	holidayThoughts.forEach((holiday) => {
-		const date = holiday.date(year)
-		const formattedDate = formatDate(date)
-		const thought = holiday.thought
+	// // Add each holiday to thoughts
+	// holidayThoughts.forEach((holiday) => {
+	// 	const date = holiday.date(year)
+	// 	const formattedDate = formatDate(date)
+	// 	const thought = holiday.thought
 
-		thoughts[formattedDate] = thought
-	})
+	// 	thoughts[formattedDate] = thought
+	// })
+
+	// For every day in the year, add a generic thought
+
+	let thoughtIndex = 0
+
+	for (let dateIndex = 0; dateIndex < 366; dateIndex++) {
+		const date = new Date(year, 0, dateIndex)
+		const formattedDate = formatDate(date)
+
+		if (thoughts[formattedDate]) {
+			continue
+		}
+
+		thoughts[formattedDate] = genericThoughts[thoughtIndex]
+
+		thoughtIndex++
+
+		// Break if we run out of thoughts
+		if (thoughtIndex > genericThoughts.length) {
+			break
+		}
+	}
 
 	return thoughts
 }
