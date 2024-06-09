@@ -1,7 +1,8 @@
 export const prerender = false
 
 import type { APIContext } from 'astro'
-import genericThoughts from './generic-thoughts.js'
+// import genericThoughts from './generic-thoughts.js'
+import { genericThoughts } from '../../../content/thoughts/generic.js'
 import holidayThoughts from './holiday-thoughts.js'
 
 // There are 23 holidays listed. I need 343 generic thoughts
