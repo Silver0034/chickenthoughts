@@ -76,32 +76,17 @@ export async function GET(context: APIContext) {
 		)
 	}
 
+	const thoughts = getThoughts(date.getFullYear())
+
 	return new Response(
 		JSON.stringify({
 			message: 'Made it this far.',
 			passedDate: `${year}-${month}-${day}`,
-			formatDate: formatDate(date),
-			getTime: date.getTime(),
-			IsGetTimeNaN: isNaN(date.getTime()),
-			genericThoughts: genericThoughts[0],
-			holidayThoughts: holidayThoughts[0],
+			thoughtsLength: Object.keys(thoughts).length,
 			...response
 		}),
 		{ status: 422 }
 	)
-
-	// return new Response(
-	// 	JSON.stringify({
-	// 		message: 'Made it this far.',
-	// 		passedDate: `${year}-${month}-${day}`,
-	// 		fullYear: date.getFullYear(),
-	// 		formattedDate: formatDate(date),
-	// 		...response
-	// 	}),
-	// 	{ status: 422 }
-	// )
-
-	// const thoughts = getThoughts(date.getFullYear())
 
 	// // In yyyy-mm-dd format
 	// const dateString = formatDate(date)
