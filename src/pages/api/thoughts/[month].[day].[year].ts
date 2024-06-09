@@ -52,10 +52,24 @@ export async function GET(context: APIContext) {
 		date: 'unknown'
 	}
 
+	if (!day || !month || !year) {
+		return new Response(
+			JSON.stringify({
+				message: 'Invalid date. Use format mm.dd.yyyy.',
+				...response
+			}),
+			{ status: 422 }
+		)
+	}
+
+	const parsedYear = parseInt(year, 10)
+	const parsedMonth = parseInt(month, 10)
+	const parsedDay = parseInt(day, 10)
+
 	return new Response(
 		JSON.stringify({
-			message: 'It got this far.',
-			params: context.params,
+			message: 'Parsed the ints',
+			ints: { parsedYear, parsedMonth, parsedDay },
 			timestamp: new Date().toISOString(),
 			...response
 		}),
