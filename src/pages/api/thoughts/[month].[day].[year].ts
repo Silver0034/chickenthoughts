@@ -24,23 +24,6 @@ function getThoughts(year: number) {
 		thoughts[formattedDate] = thought
 	})
 
-	// For every day in the year, add a generic thought
-
-	let thoughtIndex = 0
-
-	for (let dateIndex = 0; dateIndex < 366; dateIndex++) {
-		const date = new Date(year, 0, dateIndex)
-		const formattedDate = formatDate(date)
-
-		if (thoughts[formattedDate]) {
-			continue
-		}
-
-		thoughts[formattedDate] = genericThoughts[thoughtIndex]
-
-		thoughtIndex++
-	}
-
 	return thoughts
 }
 
