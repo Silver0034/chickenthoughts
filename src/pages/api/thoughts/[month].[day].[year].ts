@@ -78,11 +78,16 @@ export async function GET(context: APIContext) {
 
 	const thoughts = getThoughts(date.getFullYear())
 
+	const dateKey = formatDate(date)
+
+	response.date = dateKey
+
 	return new Response(
 		JSON.stringify({
 			message: 'Made it this far.',
 			passedDate: `${year}-${month}-${day}`,
 			thoughtsLength: Object.keys(thoughts).length,
+			dateKey: dateKey,
 			...response
 		}),
 		{ status: 422 }
