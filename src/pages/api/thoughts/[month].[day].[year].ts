@@ -69,6 +69,8 @@ export async function GET(context: APIContext) {
 			message: 'Made it this far.',
 			passedDate: `${year}-${month}-${day}`,
 			formatDate: formatDate(date),
+			getTime: date.getTime(),
+			IsGetTimeNaN: isNaN(date.getTime()),
 			...response
 		}),
 		{ status: 422 }
