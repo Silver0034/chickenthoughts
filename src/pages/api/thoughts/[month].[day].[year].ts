@@ -64,6 +64,17 @@ export async function GET(context: APIContext) {
 
 	const date = new Date(`${year}-${month}-${day}`)
 
+	// Stop if the date is invalid
+	if (isNaN(date.getTime())) {
+		return new Response(
+			JSON.stringify({
+				message: 'Invalid date. Use format mm.dd.yyyy.',
+				...response
+			}),
+			{ status: 422 }
+		)
+	}
+
 	return new Response(
 		JSON.stringify({
 			message: 'Made it this far.',
@@ -75,17 +86,6 @@ export async function GET(context: APIContext) {
 		}),
 		{ status: 422 }
 	)
-
-	// Stop if the date is invalid
-	if (isNaN(date.getTime())) {
-		return new Response(
-			JSON.stringify({
-				message: 'Invalid date. Use format mm.dd.yyyy.',
-				...response
-			}),
-			{ status: 422 }
-		)
-	}
 
 	// return new Response(
 	// 	JSON.stringify({
