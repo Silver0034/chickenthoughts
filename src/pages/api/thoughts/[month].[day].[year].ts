@@ -82,7 +82,7 @@ export async function GET(context: APIContext) {
 			formatDate: formatDate(date),
 			getTime: date.getTime(),
 			IsGetTimeNaN: isNaN(date.getTime()),
-			genericThoughts: genericThoughts,
+			genericThoughts: genericThoughts[0],
 			...response
 		}),
 		{ status: 422 }
