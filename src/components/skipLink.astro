@@ -1,0 +1,20 @@
+---
+const { text, href } = Astro.props
+---
+
+<style lang='scss'>
+	.skip-link {
+		position: absolute;
+		top: -100px;
+		left: 1em;
+		background: #000;
+		color: #fff;
+		padding: 10px;
+		z-index: 100;
+
+		&:focus {
+			top: 1em;
+		}
+	}
+</style>
+<a href={href} class='skip-link'>{text}</a>

@@ -1,0 +1,92 @@
+---
+import { AUTHOR, DOMAIN, SITE_NAME } from '../constants.js'
+
+import favicon from '../assets/chicken-thoughts-mascot.png'
+
+import '../styles/main.scss'
+
+// Throw error if title is not defined
+if (!Astro.props.title) {
+	throw new Error('Page "title" is required')
+}
+
+const titleLengthMax = 60 - SITE_NAME.length
+if (Astro.props.title.length > titleLengthMax) {
+	throw new Error(
+		`Page "title" must be less than ${titleLengthMax} characters`
+	)
+}
+
+if (!Astro.props.description) {
+	throw new Error('Page "description" is required')
+}
+
+if (
+	Astro.props.description.length < 50 ||
+	Astro.props.description.length > 160
+) {
+	throw new Error(
+		'Page "description" must be between 50 and 160 characters. The current description is ' +
+			Astro.props.description.length +
+			' characters long. Current description: ' +
+			Astro.props.description
+	)
+}
+
+const {
+	title,
+	description,
+	robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+	featuredImage
+} = Astro.props
+---
+
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+	<meta charset='utf-8' />
+	<meta name='viewport' content='width=device-width' />
+	<meta name='generator' content={Astro.generator} />
+	<title>{title} - {SITE_NAME}</title>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+	<meta name='description' content={description} />
+	<meta name='robots' content={robots} />
+	<link rel='sitemap' href='/sitemap-index.xml' />
+	<meta name='author' content={AUTHOR} />
+	<meta property='og:locale' content='en_US' />
+	<meta property='og:type' content='website' />
+	<meta property='og:title' content={title} />
+	<meta property='og:description' content={description} />
+	<meta
+		property='og:url'
+		content={'https://' + DOMAIN + Astro.url.pathname}
+	/>
+	<meta property='og:site_name' content={SITE_NAME} />
+	{
+		featuredImage && typeof featuredImage === 'string' && (
+			<meta property='og:image' content={featuredImage} />
+		)
+	}
+	{
+		featuredImage && typeof featuredImage === 'object' && (
+			<>
+				<meta property='og:image' content={featuredImage.src} />
+				<meta property='og:image:width' content={featuredImage.width} />
+				<meta
+					property='og:image:height'
+					content={featuredImage.height}
+				/>
+				<meta property='og:image:type' content={featuredImage.format} />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta name='twitter:image' content={featuredImage.src} />
+			</>
+		)
+	}
+	<meta name='twitter:title' content={title} />
+	<meta name='twitter:description' content={description} />
+	<!-- favicon -->
+	<link rel='icon' href={favicon.src} />
+	<link rel='apple-touch-icon' sizes='180x180' href={favicon.src} />
+
+	<script src='https://cdn.userway.org/widget.js' data-account='0k3gacOEFl'
+	></script>
+</head>

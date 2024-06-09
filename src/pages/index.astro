@@ -1,16 +1,42 @@
 ---
+// Required for page meta tags
+const title = 'Home',
+	description =
+		'Welcome to Chicken Thoughts, where you can find the funniest chicken jokes and images on the internet!'
 
+// Page layout
+import LayoutBase from '../layouts/layout-base.astro'
+
+// Page content
+import { getCollection } from 'astro:content'
+import { Picture } from 'astro:assets'
+import Joke from '../components/joke.astro'
+import babyChicken from '../assets/baby-chicken.jpg'
+import Hero from '../components/hero.astro'
+import TodaysThought from '../components/todaysThought.astro'
+
+const jokes = await getCollection('jokes')
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<LayoutBase title={title} description={description}>
+	<Hero image={babyChicken} alt='Baby chicken'>
+		<h1>Chicken Thoughts</h1>
+		<p>
+			We're here to make you laugh with the funniest chicken jokes and
+			images on the internet!
+		</p>
+	</Hero>
+	<TodaysThought />
+	<section id='jokes'>
+		<h2>Why did the Chicken... tell a joke?</h2>
+		<p>
+			At Chicken Thoughts, we're all about spreading joy and laughter. Our
+			jokes and images are here to make your day a little brighter.
+		</p>
+		{
+			jokes.map((joke) => {
+				return <Joke joke={joke} />
+			})
+		}
+	</section>
+</LayoutBase>

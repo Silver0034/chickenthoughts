@@ -1,0 +1,30 @@
+@use 'reset';
+@use 'colors';
+@use 'fonts';
+@use 'typography';
+
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+a {
+	color: var(--color-interaction);
+	font-weight: bold;
+	text-underline-offset: 0.25em;
+}
+.content {
+	padding: 20px;
+}
+.joke {
+	margin: 20px 0;
+	font-size: 1.5em;
+}
+img,
+.gif {
+	max-width: 80%;
+	height: auto;
+	margin: 20px 0;
+}

@@ -1,0 +1,45 @@
+---
+import { Picture } from 'astro:assets'
+import logo from '../assets/chicken-thoughts-mascot.png'
+---
+
+<style lang='scss'>
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--color-primary);
+		padding: 20px;
+	}
+	h1 {
+		margin: 0;
+		font-size: 3em;
+	}
+
+	img {
+		width: 50px;
+	}
+
+	a,
+	a:hover,
+	a:visited {
+		color: var(--color-text);
+	}
+</style>
+
+<header>
+	<a
+		aria-label='Chicken Thoughts Homepage'
+		title='Chicken Thoughts Homepage'
+		href='/'
+		><Picture
+			src={logo}
+			alt='Chicken Thoughts'
+			formats={['avif', 'webp', 'jpg']}
+			widths={[50]}
+		/></a
+	>
+	<!-- <nav>
+		<a href='/' title='Visit a random page'>Cluck of the draw</a>
+	</nav> -->
+</header>

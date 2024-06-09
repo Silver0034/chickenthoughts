@@ -1,17 +1,25 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^4.10.0",
-    "@astrojs/check": "^0.7.0",
-    "typescript": "^5.4.5"
-  }
+	"name": "",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"build:font-fallbacks": "node ./scripts/font-fallbacks.js",
+		"dev": "npm run build:font-fallbacks && astro dev",
+		"start": "npm run build:font-fallbacks && astro dev",
+		"build": "npm run build:font-fallbacks && astro check && astro build",
+		"preview": "npm run build:font-fallbacks && astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.7.0",
+		"@astrojs/cloudflare": "^10.3.0",
+		"@capsizecss/core": "^4.1.2",
+		"@capsizecss/metrics": "^3.2.0",
+		"@capsizecss/unpack": "^2.2.0",
+		"astro": "^4.10.0",
+		"typescript": "^5.4.5"
+	},
+	"devDependencies": {
+		"sass": "^1.77.4"
+	}
 }

@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content'
+interface Props {
+	joke: CollectionEntry<'jokes'>
+}
+
+const { joke } = Astro.props
+import { Picture } from 'astro:assets'
+const { Content } = await joke.render()
+---
+
+<div class='joke'>
+	<Content />
+	<Picture
+		src={joke.data.image}
+		alt={joke.data.imageAlt}
+		width={400}
+		height={300}
+		style='margin-inline: auto;'
+	/>
+</div>

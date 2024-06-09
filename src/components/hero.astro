@@ -1,0 +1,51 @@
+---
+import { Picture } from 'astro:assets'
+const { image, alt } = Astro.props
+---
+
+<style lang='scss'>
+	#hero {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		background-color: var(--color-text);
+		z-index: 0;
+		color: white;
+		padding: 4em 2rem;
+		--font-size-base: var(--font-size-x-large);
+		grid-column: 1 / -1;
+
+		.content {
+			width: 100%;
+			max-width: 800px;
+			margin-inline: auto;
+		}
+
+		img {
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			width: 100%;
+			max-width: unset;
+			object-fit: cover;
+			z-index: -1;
+			margin: 0;
+			opacity: 0.35;
+		}
+	}
+</style>
+
+<section id='hero'>
+	<div class='content'>
+		<slot />
+	</div>
+	<Picture
+		src={image}
+		alt={alt}
+		width='1920'
+		height='600'
+		formats={['avif', 'webp', 'jpg']}
+		widths={[240, 540, 720, 1920, image.width]}
+		sizes={`(max-width: 360px) 240px, (max-width: 540px) 540px, (max-width: 720px) 720px, (max-width: 1920px) 1920px, ${image.width}px`}
+	/>
+</section>

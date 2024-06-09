@@ -1,0 +1,81 @@
+@mixin heading($level, $font-size) {
+	h#{$level},
+	.h#{$level} {
+		font-family: var(--font-family-heading);
+		font-weight: 700;
+		line-height: 0.95;
+		letter-spacing: 0.01rem;
+		text-transform: uppercase;
+		font-size: $font-size;
+		margin-block-start: 1rem;
+	}
+}
+
+@mixin mobile {
+	@media only screen and (max-width: 768px) {
+		@content;
+	}
+}
+
+:root {
+	font-family: var(--font-family-body);
+	@include mobile {
+		font-size: 16px;
+	}
+}
+
+$heading-level-count: 6;
+$font-scale: 1.32;
+$steps-up: 6;
+$steps-down: 6;
+$mobile-steps-up-limit: 3;
+
+:root {
+	@for $i from $steps-down * -1 through $steps-up {
+		$label: 'font-size-';
+
+		$absolute-i: abs($i);
+		@if $absolute-i > 1 {
+			@for $j from 2 through $absolute-i {
+				$label: $label + 'x';
+			}
+			$label: $label + '-';
+		}
+
+		@if ($i < 0) {
+			$label: $label + 'small';
+		} @else if ($i > 0) {
+			$label: $label + 'large';
+		} @else {
+			$label: $label + 'base';
+		}
+
+		$font-size: 1rem * pow($font-scale, $i);
+		--#{$label}: #{$font-size};
+		@if $i >= 0 {
+			@include mobile {
+				$mobile-font-size: 1rem * pow($font-scale, $i - 1);
+				--#{$label}: #{$mobile-font-size};
+			}
+		}
+
+		@if $i == -1 {
+			small {
+				font-size: $font-size;
+			}
+		}
+
+		.#{$label} {
+			font-size: $font-size;
+		}
+
+		@if $i <= $heading-level-count and $i >= $heading-level-count * -1 {
+			@include heading($heading-level-count + 1 - $i, var(--#{$label}));
+		}
+	}
+}
+
+p {
+	margin-block-start: 1rem;
+	font-size: var(--font-size-base);
+}

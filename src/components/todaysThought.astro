@@ -1,0 +1,64 @@
+---
+
+---
+
+<style>
+	.loading::after {
+		content: 'Loading...';
+		animation: loading 1s infinite;
+	}
+
+	@keyframes loading {
+		0% {
+			content: 'Loading.';
+		}
+		33% {
+			content: 'Loading..';
+		}
+		66% {
+			content: 'Loading...';
+		}
+	}
+</style>
+
+<section id='thought'>
+	<h2>Today's Thought</h2>
+	<br />
+	<p class='h6 thought loading'></p>
+	<br />
+</section>
+
+<script is:inline>
+	async function setThought() {
+		// Get today in yyyy-mm-dd format
+		let today = new Date()
+
+		const year = today.getFullYear()
+		const month = (today.getMonth() + 1).toLocaleString('en-US', {
+			minimumIntegerDigits: 2,
+			useGrouping: false
+		})
+		const day = today.getDate().toLocaleString('en-US', {
+			minimumIntegerDigits: 2,
+			useGrouping: false
+		})
+
+		console.log(`${year}.${month}.${day}`)
+
+		// Get today's thought from /api/thought/mm-dd-yyyy
+		const response = await fetch(`/api/thoughts/${month}.${day}.${year}`)
+		const data = await response.json()
+		console.log(data)
+
+		// Select the .thought element
+		const thought = document.querySelector('#thought .thought')
+
+		// Remove the .loading class from the .thought element
+		thought.classList.remove('loading')
+
+		// Display the thought in the .thought element
+		thought.textContent = data.message
+	}
+
+	setThought()
+</script>

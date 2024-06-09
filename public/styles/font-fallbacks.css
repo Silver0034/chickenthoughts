@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Darumadrop One Fallback: Arial";
+  src: local('Arial'), local('ArialMT');
+  font-display: swap;
+  ascent-override: 117.797%;
+  descent-override: 29.2462%;
+  line-gap-override: 0%;
+  size-adjust: 98.4745%;
+}
+@font-face {
+  font-family: "Darumadrop One Fallback: Roboto";
+  src: local('Roboto'), local('Roboto-Regular');
+  font-display: swap;
+  ascent-override: 117.539%;
+  descent-override: 29.1821%;
+  size-adjust: 98.6907%;
+}@font-face {
+  font-family: "Roboto Serif Fallback: Arial";
+  src: local('Arial'), local('ArialMT');
+  font-display: swap;
+  ascent-override: 84.8578%;
+  descent-override: 22.3358%;
+  line-gap-override: 0%;
+  size-adjust: 109.2416%;
+}
+@font-face {
+  font-family: "Roboto Serif Fallback: Roboto";
+  src: local('Roboto'), local('Roboto-Regular');
+  font-display: swap;
+  ascent-override: 84.6719%;
+  descent-override: 22.2869%;
+  size-adjust: 109.4814%;
+}

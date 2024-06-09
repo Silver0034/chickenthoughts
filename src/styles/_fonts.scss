@@ -1,0 +1,31 @@
+@use '../../public/styles/font-fallbacks.css';
+
+@font-face {
+	font-family: 'Darumadrop One';
+	src: url('/fonts/Darumadrop_One/Darumadrop_One.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+:root {
+	--font-family-heading: 'Darumadrop One', 'Darumadrop One Fallback: Arial',
+		'Darumadrop One Fallback: Roboto', sans-serif;
+	.font-family-heading {
+		font-family: var(--font-family-heading);
+	}
+}
+
+@font-face {
+	font-family: 'Roboto Serif';
+	src: url('/fonts/Roboto_Serif/Roboto_Serif.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+:root {
+	--font-family-body: 'Roboto Serif', 'Roboto Serif Fallback: Arial',
+		'Roboto Serif Fallback: Roboto', serif;
+	.font-family-body {
+		font-family: var(--font-family-body);
+	}
+}

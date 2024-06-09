@@ -1,0 +1,74 @@
+---
+const year = new Date().getFullYear()
+---
+
+<footer transition:persist>
+	<p>
+		We promote responsible consumption of chicken-related media. While it
+		can be entertaining and fun, it’s important to engage with this content
+		in moderation. Please enjoy the chicken-related media on this website in
+		a balanced way to ensure a healthy and fulfilling lifestyle.
+	</p>
+
+	<br />
+	<a class='h1 logo' href='/'>Chicken Thoughts</a>
+	<!-- <nav>
+		<a href='/recipes'>Recipes</a>
+		<a href='/search'>Search</a>
+		<a href='/posts'>Posts</a>
+	</nav> -->
+	<div class='copywrite'>
+		<p>&copy; {year}, All Rights Reserved.</p>
+		<p>
+			<a target='_blank' href='https://jlodes.com'>jlodes.com</a> |
+			<span class='font-heading'><a href='/'>Chicken Thoughts</a></span>
+		</p>
+	</div>
+</footer>
+
+<style lang='scss'>
+	footer {
+		margin-block-start: auto;
+		grid-column: 1 / -1;
+		padding-block-start: 1rem;
+		text-align: center;
+		color: var(--color-background);
+		background: var(--color-darker);
+
+		> * {
+			padding-inline: 2rem;
+		}
+
+		.logo {
+			font-size: var(--font-size-xxx-large);
+		}
+
+		a {
+			display: block;
+			text-decoration: none;
+			color: var(--white);
+		}
+
+		.copywrite {
+			background-color: var(--black);
+			color: var(--white);
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			padding-block: 1rem;
+			margin-block-start: 1rem;
+
+			@media only screen and (max-width: 600px) {
+				flex-direction: column;
+				align-items: center;
+				gap: 1em;
+			}
+
+			p {
+				margin: 0;
+				display: flex;
+				gap: 1em;
+			}
+		}
+	}
+</style>

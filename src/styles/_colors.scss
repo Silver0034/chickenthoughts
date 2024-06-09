@@ -1,0 +1,25 @@
+$colors: (
+	text: #00282c,
+	background: #ffffff,
+	neutral: #fff7df,
+	primary: #ffe874,
+	secondary: #ff5d5d,
+	tertiary: #ff8f1c,
+	darker: #00454d,
+	interaction: #ff0000
+);
+
+:root {
+	@each $name, $color in $colors {
+		--color-#{$name}: #{$color};
+	}
+}
+
+@each $name, $color in $colors {
+	.color-#{$name} {
+		color: var(--color-#{$name});
+	}
+	.background-color-#{$name} {
+		background-color: var(--color-#{$name});
+	}
+}

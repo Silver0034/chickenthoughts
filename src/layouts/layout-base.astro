@@ -1,0 +1,37 @@
+---
+const { title, description, featuredImage } = Astro.props
+import Head from '../components/head.astro'
+import Header from '../components/header.astro'
+import Footer from '../components/footer.astro'
+import SkipLink from '../components/skipLink.astro'
+---
+
+<style lang='scss' is:global>
+	#content {
+		display: grid;
+		grid-template-columns: minmax(2rem, auto) minmax(0, 1080px) minmax(
+				2rem,
+				auto
+			);
+
+		> * {
+			grid-column: 2;
+		}
+	}
+</style>
+
+<html lang='en'>
+	<SkipLink text='Skip to Content' href='#content' />
+	<Head
+		title={title}
+		description={description}
+		featuredImage={featuredImage}
+	/>
+	<body>
+		<Header />
+		<main id='content'>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
