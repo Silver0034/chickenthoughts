@@ -64,6 +64,15 @@ export async function GET(context: APIContext) {
 
 	const date = new Date(`${year}-${month}-${day}`)
 
+	return new Response(
+		JSON.stringify({
+			message: 'Made it this far.',
+			passedDate: `${year}-${month}-${day}`,
+			...response
+		}),
+		{ status: 422 }
+	)
+
 	// Stop if the date is invalid
 	if (isNaN(date.getTime())) {
 		return new Response(
@@ -75,18 +84,16 @@ export async function GET(context: APIContext) {
 		)
 	}
 
-	return new Response(
-		JSON.stringify({
-			message: 'Made it this far.',
-			passedDate: `${year}-${month}-${day}`,
-			fullYear: date.getFullYear(),
-			formattedDate: formatDate(date),
-			genericThoughts: genericThoughts,
-			holidayThoughts: holidayThoughts,
-			...response
-		}),
-		{ status: 422 }
-	)
+	// return new Response(
+	// 	JSON.stringify({
+	// 		message: 'Made it this far.',
+	// 		passedDate: `${year}-${month}-${day}`,
+	// 		fullYear: date.getFullYear(),
+	// 		formattedDate: formatDate(date),
+	// 		...response
+	// 	}),
+	// 	{ status: 422 }
+	// )
 
 	// const thoughts = getThoughts(date.getFullYear())
 
