@@ -52,6 +52,16 @@ export async function GET(context: APIContext) {
 		date: 'unknown'
 	}
 
+	return new Response(
+		JSON.stringify({
+			message: 'It got this far.',
+			params: context.params,
+			timestamp: new Date().toISOString(),
+			...response
+		}),
+		{ status: 422 }
+	)
+
 	if (!day || !month || !year) {
 		return new Response(
 			JSON.stringify({
