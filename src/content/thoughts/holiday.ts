@@ -17,7 +17,7 @@ function getEasterSunday(year: number) {
 	return new Date(year, month - 1, day)
 }
 
-export default [
+export const holidayThoughts: { thought: string; date: Function }[] = [
 	{
 		thought:
 			"New Year, same old me—just a little wiser and a little featherier. Let's make this year egg-ceptional!",

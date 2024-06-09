@@ -3,7 +3,7 @@ export const prerender = false
 import type { APIContext } from 'astro'
 // import genericThoughts from './generic-thoughts.js'
 import { genericThoughts } from '../../../content/thoughts/generic.js'
-import holidayThoughts from './holiday-thoughts.js'
+import { holidayThoughts } from '../../../content/thoughts/holiday.js'
 
 // There are 23 holidays listed. I need 343 generic thoughts
 
@@ -84,6 +84,7 @@ export async function GET(context: APIContext) {
 			getTime: date.getTime(),
 			IsGetTimeNaN: isNaN(date.getTime()),
 			genericThoughts: genericThoughts[0],
+			holidayThoughts: holidayThoughts[0],
 			...response
 		}),
 		{ status: 422 }
