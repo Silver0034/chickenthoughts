@@ -68,6 +68,7 @@ export async function GET(context: APIContext) {
 		JSON.stringify({
 			message: 'Made it this far.',
 			passedDate: `${year}-${month}-${day}`,
+			formatDate: formatDate(date),
 			...response
 		}),
 		{ status: 422 }
