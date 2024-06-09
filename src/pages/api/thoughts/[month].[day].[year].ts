@@ -82,15 +82,24 @@ export async function GET(context: APIContext) {
 
 	response.date = dateKey
 
+	const thought = thoughts[dateKey]
+
+	if (!thought) {
+		return new Response(
+			JSON.stringify({
+				message: 'No thought found for this date.',
+				...response
+			}),
+			{ status: 404 }
+		)
+	}
+
 	return new Response(
 		JSON.stringify({
-			message: 'Made it this far.',
-			passedDate: `${year}-${month}-${day}`,
-			thoughtsLength: Object.keys(thoughts).length,
-			dateKey: dateKey,
+			message: thought,
 			...response
 		}),
-		{ status: 422 }
+		{ status: 200 }
 	)
 
 	// // In yyyy-mm-dd format
