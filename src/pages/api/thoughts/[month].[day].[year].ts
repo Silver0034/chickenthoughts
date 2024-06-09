@@ -62,17 +62,44 @@ export async function GET(context: APIContext) {
 		)
 	}
 
-	const parsedYear = parseInt(year, 10)
-	const parsedMonth = parseInt(month, 10)
-	const parsedDay = parseInt(day, 10)
+	const date = new Date(`${year}-${month}-${day}`)
+
+	// Stop if the date is invalid
+	if (isNaN(date.getTime())) {
+		return new Response(
+			JSON.stringify({
+				message: 'Invalid date. Use format mm.dd.yyyy.',
+				...response
+			}),
+			{ status: 422 }
+		)
+	}
+
+	const thoughts = getThoughts(date.getFullYear())
+
+	// In yyyy-mm-dd format
+	const dateString = formatDate(date)
+
+	const thought = thoughts[dateString]
+
+	response.date = dateString
+
+	if (!thought) {
+		return new Response(
+			JSON.stringify({
+				message: 'No thought found for this date.',
+				...response
+			}),
+			{ status: 404 }
+		)
+	}
 
 	return new Response(
 		JSON.stringify({
-			message: 'Parsed the ints',
-			ints: { parsedYear, parsedMonth, parsedDay },
-			timestamp: new Date().toISOString(),
-			...response
-		}),
-		{ status: 422 }
+			attribution:
+				'The Chicken. ChickenThoughts.com. All rights reserved.',
+			date: date.toDateString(),
+			message: thought
+		})
 	)
 }
