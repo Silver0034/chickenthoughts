@@ -1,6 +1,5 @@
 export const prerender = false
 
-import type { APIRoute } from 'astro'
 import type { APIContext } from 'astro'
 import genericThoughts from './generic-thoughts.js'
 import holidayThoughts from './holiday-thoughts.js'
@@ -41,14 +40,6 @@ function getThoughts(year: number) {
 
 		thoughtIndex++
 	}
-
-	// // Get the date for New Year's Day
-
-	// // Get the date for easter Sunday
-	// const easterSunday = getEasterSunday(year)
-	// const goodFriday = new Date(easterSunday).setDate(
-	// 	easterSunday.getDate() - 2
-	// )
 
 	return thoughts
 }

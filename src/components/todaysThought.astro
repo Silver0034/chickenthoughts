@@ -47,6 +47,7 @@
 
 		// Get today's thought from /api/thought/mm-dd-yyyy
 		const response = await fetch(`/api/thoughts/${month}.${day}.${year}`)
+		console.log(response)
 		const data = await response.json()
 		console.log(data)
 

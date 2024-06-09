@@ -4,9 +4,15 @@ import cloudflare from '@astrojs/cloudflare'
 
 // https://astro.build/config
 export default defineConfig({
+	output: 'hybrid',
 	image: {
 		entrypoint: 'compile'
 	},
-	output: 'hybrid',
-	adapter: cloudflare()
+	adapter: cloudflare({
+		imageService: 'compile'
+	}),
+	platformProxy: {
+		enabled: true,
+		configPath: 'wrangler.toml'
+	}
 })
