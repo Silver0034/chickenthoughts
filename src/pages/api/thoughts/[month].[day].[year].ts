@@ -15,14 +15,14 @@ function formatDate(date: Date) {
 function getThoughts(year: number) {
 	const thoughts: { [key: string]: string } = {}
 
-	// // Add each holiday to thoughts
-	// holidayThoughts.forEach((holiday) => {
-	// 	const date = holiday.date(year)
-	// 	const formattedDate = formatDate(date)
-	// 	const thought = holiday.thought
+	// Add each holiday to thoughts
+	holidayThoughts.forEach((holiday) => {
+		const date = holiday.date(year)
+		const formattedDate = formatDate(date)
+		const thought = holiday.thought
 
-	// 	thoughts[formattedDate] = thought
-	// })
+		thoughts[formattedDate] = thought
+	})
 
 	// For every day in the year, add a generic thought
 
@@ -39,11 +39,6 @@ function getThoughts(year: number) {
 		thoughts[formattedDate] = genericThoughts[thoughtIndex]
 
 		thoughtIndex++
-
-		// Break if we run out of thoughts
-		if (thoughtIndex > genericThoughts.length) {
-			break
-		}
 	}
 
 	return thoughts
@@ -80,15 +75,44 @@ export async function GET(context: APIContext) {
 		)
 	}
 
-	const thoughts = getThoughts(date.getFullYear())
-
 	return new Response(
 		JSON.stringify({
-			message: 'Getting closer.',
+			message: 'Made it this far.',
 			passedDate: `${year}-${month}-${day}`,
-			thoughts: thoughts,
+			fullYear: date.getFullYear(),
+			formattedDate: formatDate(date),
+			genericThoughts: genericThoughts,
+			holidayThoughts: holidayThoughts,
 			...response
 		}),
 		{ status: 422 }
 	)
+
+	// const thoughts = getThoughts(date.getFullYear())
+
+	// // In yyyy-mm-dd format
+	// const dateString = formatDate(date)
+
+	// const thought = thoughts[dateString]
+
+	// response.date = dateString
+
+	// if (!thought) {
+	// 	return new Response(
+	// 		JSON.stringify({
+	// 			message: 'No thought found for this date.',
+	// 			...response
+	// 		}),
+	// 		{ status: 404 }
+	// 	)
+	// }
+
+	// return new Response(
+	// 	JSON.stringify({
+	// 		attribution:
+	// 			'The Chicken. ChickenThoughts.com. All rights reserved.',
+	// 		date: date.toDateString(),
+	// 		message: thought
+	// 	})
+	// )
 }
