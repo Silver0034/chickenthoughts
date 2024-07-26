@@ -4,6 +4,7 @@ import Head from '../components/head.astro'
 import Header from '../components/header.astro'
 import Footer from '../components/footer.astro'
 import SkipLink from '../components/skipLink.astro'
+import Chat from '../components/chat.astro'
 ---
 
 <style lang='scss' is:global>
@@ -32,6 +33,7 @@ import SkipLink from '../components/skipLink.astro'
 		<main id='content'>
 			<slot />
 		</main>
+		<Chat />
 		<Footer />
 	</body>
 </html>
