@@ -11,11 +11,15 @@ const { Content } = await joke.render()
 
 <div class='joke'>
 	<Content />
-	<Picture
-		src={joke.data.image}
-		alt={joke.data.imageAlt}
-		width={400}
-		height={300}
-		style='margin-inline: auto;'
-	/>
+	{
+		joke.data.image && joke.data.imageAlt && (
+			<Picture
+				src={joke.data.image}
+				alt={joke.data.imageAlt}
+				width={400}
+				height={300}
+				style='margin-inline: auto;'
+			/>
+		)
+	}
 </div>

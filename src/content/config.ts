@@ -7,8 +7,8 @@ const jokeCollection = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			image: image(),
-			imageAlt: z.string(),
+			image: image().optional(),
+			imageAlt: z.string().optional(),
 			tags: z.array(z.string())
 		})
 })

@@ -1,8 +1,8 @@
 ---
 title: 'Chicken Band'
 description: 'A chicken band is playing music in a bar.'
-image: '../../assets/placeholder-image.png'
-imageAlt: 'Funny Chicken Image'
+# image: '../../assets/placeholder-image.png'
+# imageAlt: 'Funny Chicken Image'
 tags: ['chicken', 'band', 'music']
 ---
 
